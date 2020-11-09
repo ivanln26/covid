@@ -1,5 +1,6 @@
-#include <fstream>
 #include <iostream>
+
+#include "CSVReader.h"
 
 using namespace std;
 
@@ -10,12 +11,8 @@ int main(int argc, char **argv) {
   }
   cout << "Hello world!" << endl;
 
-  char buf[1000];
-  fstream fs("testdata/Covid19Casos.csv", fstream::in);
-  while (fs.getline(buf, 1000)) {
-    cout << buf;
-  }
-  fs.close();
+  CSVReader r("testdata/Covid19Casos-10.csv");
+  r.read();
 
   return 0;
 }
