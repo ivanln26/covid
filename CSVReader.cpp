@@ -1,7 +1,5 @@
 #include "CSVReader.h"
 
-#include "stdio.h"
-
 CSVReader::CSVReader(const char *filename) {
   printf("%s\n", filename);
   this->ifs.open(filename);
@@ -13,19 +11,21 @@ CSVReader::CSVReader(const char *filename) {
 
 CSVReader::~CSVReader() { this->ifs.close(); }
 
-// TODO: parse last column
-// TODO: append parsed row to list
-void CSVReader::parseRow(std::string row) {
+// TODO: append parsed row to linked list
+std::vector<std::string> CSVReader::parseRow(std::string row) {
+  std::vector<std::string> record;
   std::string col;
   for (char c : row) {
     if (c == '"') continue;
     if (c == ',') {
-      printf("%s\n", col.c_str());
+      record.push_back(col);
       col.clear();
       continue;
     }
     col.push_back(c);
   }
+  record.push_back(col);
+  return record;
 }
 
 // TODO: return list of parsed rows
@@ -33,8 +33,12 @@ void CSVReader::read() {
   std::string row;
   std::getline(this->ifs, row);  // Skip table header
   while (!this->ifs.eof()) {
-    std::getline(this->ifs, row);
-    parseRow(row);
     printf("---------------\n");
+    std::getline(this->ifs, row);
+    if (row.empty()) continue;  // Skip empty row
+    std::vector<std::string> record = parseRow(row);
+    for (std::string r : record) {
+      printf("%s\n", r.c_str());
+    }
   }
 }
