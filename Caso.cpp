@@ -1,5 +1,7 @@
 #include "Caso.h"
 
+Caso::Caso() {}
+
 Caso::Caso(std::string id, std::string edad, std::string edad_anos_meses,
            std::string cuidado_intensivo, std::string fecha_cui_intensivo,
            std::string fallecido, std::string carga_provincia_id,
@@ -14,6 +16,12 @@ Caso::Caso(std::string id, std::string edad, std::string edad_anos_meses,
   this->clasificacion_resumen =
       (clasificacion_resumen.compare("Descartado")) ? false : true;
 }
+
+bool Caso::operator>(Caso c) { return this->id > c.id; }
+
+bool Caso::operator<(Caso c) { return this->id < c.id; }
+
+bool Caso::operator==(Caso c) { return this->id == c.id; }
 
 void Caso::toString() {
   printf("| %d ", this->id);

@@ -18,8 +18,12 @@ class Caso {
   bool clasificacion_resumen;
 
  public:
+  Caso();
   Caso(std::string, std::string, std::string, std::string, std::string,
        std::string, std::string, std::string);
+  bool operator>(Caso);
+  bool operator<(Caso);
+  bool operator==(Caso);
   void toString();
 };
 
