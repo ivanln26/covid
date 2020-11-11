@@ -17,6 +17,10 @@ Caso::Caso(std::string id, std::string edad, std::string edad_anos_meses,
       (clasificacion_resumen.compare("Descartado")) ? false : true;
 }
 
+bool Caso::get_clasificacion(){return this->clasificacion_resumen}
+
+bool Caso::get_fallecido(){return this->get_fallecido()}
+
 bool Caso::operator>(Caso c) { return this->id > c.id; }
 
 bool Caso::operator<(Caso c) { return this->id < c.id; }

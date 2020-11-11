@@ -7,6 +7,21 @@
 
 using namespace std;
 
+int n_muestras = 0;
+int n_infectados = 0;
+int n_fallecidos = 0;
+
+void preOrder (BinaryNode<Caso>*node){
+    if (node == NULL) return;
+    n_muestras++;
+    if(node->getData().get_clasificacion())
+        n_infectados++;
+    if (node->getData().get_fallecido())
+        n_fallecidos++;
+    preOrder(node->getLeft());
+    preOrder(node->getRight());
+};
+
 int main(int argc, char **argv) {
   cout << "Argumentos: " << argc << endl;
   for (int i = 0; i < argc; i++) {

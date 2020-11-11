@@ -24,6 +24,8 @@ class Caso {
   bool operator>(Caso);
   bool operator<(Caso);
   bool operator==(Caso);
+  bool get_clasificacion();
+  bool get_fallecido();
   void toString();
 };
 
