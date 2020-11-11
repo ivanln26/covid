@@ -18,6 +18,7 @@ class List {
   void append(T);
   void clear();
   void prepend(T);
+  T getData(int);
   int getSize();
   bool isEmpty();
   T operator[](int);
@@ -77,6 +78,17 @@ void List<T>::prepend(T data) {
   n->setNext(this->head);
   this->head = n;
   this->size++;
+}
+
+template <class T>
+T List<T>::getData(int pos) {
+    if (pos < 0 || pos > this->size) throw 404;
+
+    Node<T> *aux = this->head;
+    for (int i = 0; i < pos; i++) {
+        aux = aux->getNext();
+    }
+    return aux->getData();
 }
 
 template <class T>
