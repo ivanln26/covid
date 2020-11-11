@@ -11,34 +11,30 @@ CSVReader::CSVReader(const char *filename) {
 
 CSVReader::~CSVReader() { this->ifs.close(); }
 
-// TODO: append parsed row to linked list
-std::vector<std::string> CSVReader::parseRow(std::string row) {
-  std::vector<std::string> record;
+List<std::string> *CSVReader::parseRow(std::string row) {
+  List<std::string> *record = new List<std::string>;
   std::string col;
   for (char c : row) {
-    if (c == '"') continue;
+    if (c == '"' || c == '\r') continue;
     if (c == ',') {
-      record.push_back(col);
+      record->append(col);
       col.clear();
       continue;
     }
     col.push_back(c);
   }
-  record.push_back(col);
+  record->append(col);
   return record;
 }
 
-// TODO: return list of parsed rows
-void CSVReader::read() {
+List<List<std::string> *> CSVReader::read() {
+  List<List<std::string> *> records;
   std::string row;
   std::getline(this->ifs, row);  // Skip table header
   while (!this->ifs.eof()) {
-    printf("---------------\n");
     std::getline(this->ifs, row);
     if (row.empty()) continue;  // Skip empty row
-    std::vector<std::string> record = parseRow(row);
-    for (std::string r : record) {
-      printf("%s\n", r.c_str());
-    }
+    records.append(parseRow(row));
   }
+  return records;
 }

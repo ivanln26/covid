@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "CSVReader.h"
+#include "ds/List.h"
 
 using namespace std;
 
@@ -12,7 +13,10 @@ int main(int argc, char **argv) {
   cout << "Hello world!" << endl;
 
   CSVReader r("testdata/Covid19Casos-10.csv");
-  r.read();
+  List<List<string> *> records = r.read();
+  for (int i = 0; i < records.getSize(); i++) {
+    records[i]->toString();
+  }
 
   return 0;
 }

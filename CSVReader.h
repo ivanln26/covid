@@ -1,5 +1,6 @@
 #include <fstream>
-#include <vector>
+
+#include "ds/List.h"
 
 #ifndef CSVREADER_H
 #define CSVREADER_H
@@ -11,8 +12,8 @@ class CSVReader {
  public:
   CSVReader(const char *);
   ~CSVReader();
-  std::vector<std::string> parseRow(std::string);
-  void read();
+  List<std::string> *parseRow(std::string);
+  List<List<std::string> *> read();
 };
 
 #endif
