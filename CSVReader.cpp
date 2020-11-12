@@ -11,6 +11,7 @@ CSVReader::CSVReader(const char *filename) {
 
 CSVReader::~CSVReader() { this->ifs.close(); }
 
+// TODO: do not append to linked list O(n).
 List<std::string> *CSVReader::parseRow(std::string row) {
   List<std::string> *record = new List<std::string>;
   std::string col;

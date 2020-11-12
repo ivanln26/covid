@@ -1,5 +1,8 @@
 #include <iostream>
 
+#include "Caso.h"
+#include "ds/BinaryNode.h"
+
 #ifndef CMAKE_COVID_ESTADISTICA_H
 #define CMAKE_COVID_ESTADISTICA_H
 
@@ -12,11 +15,10 @@ class Estadistica {
   float porcentaje_fallecidos;
   int *n_infectados_edad;
   int *n_fallecidos_edad;
+  void preorder(BinaryNode<Caso> *);
 
  public:
-  Estadistica();
-  Estadistica(int, int, int, int *, int *);
-  void calcularPorcentajes();
+  Estadistica(BinaryNode<Caso> *);
   void toString();
 };
 

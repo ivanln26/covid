@@ -8,21 +8,6 @@
 
 using namespace std;
 
-int n_muestras = 0;
-int n_infectados = 0;
-int n_fallecidos = 0;
-
-void preorder(BinaryNode<Caso> *node) {
-  if (node == NULL) return;
-
-  n_muestras++;
-  if (node->getData().getClasificacion()) n_infectados++;
-  if (node->getData().getFallecido()) n_fallecidos++;
-
-  preorder(node->getLeft());
-  preorder(node->getRight());
-};
-
 int main(int argc, char **argv) {
   cout << "Argumentos: " << argc << endl;
   for (int i = 0; i < argc; i++) {
@@ -54,10 +39,7 @@ int main(int argc, char **argv) {
     casos.insert(caso);
   }
 
-  // casos.toString();
-  preorder(casos.getRoot());
-  Estadistica e(n_muestras, n_infectados, n_fallecidos, NULL, NULL);
-  e.calcularPorcentajes();
+  Estadistica e(casos.getRoot());
   e.toString();
 
   return 0;
