@@ -7,7 +7,10 @@ Caso::Caso(std::string id, std::string edad, std::string edad_anos_meses,
            std::string fallecido, std::string carga_provincia_id,
            std::string clasificacion_resumen) {
   this->id = std::stoi(id);
-  this->edad = std::stoi(edad);
+  if (!edad.empty())
+    this->edad = std::stoi(edad);
+  else
+    this->edad = 0;
   this->edad_anos_meses = (edad_anos_meses.compare("Años") == 0) ? true : false;
   this->cuidado_intensivo =
       (cuidado_intensivo.compare("NO") == 0) ? false : true;

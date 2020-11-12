@@ -11,31 +11,38 @@ CSVReader::CSVReader(const char *filename) {
 
 CSVReader::~CSVReader() { this->ifs.close(); }
 
-// TODO: do not append to linked list O(n).
-List<std::string> *CSVReader::parseRow(std::string row) {
-  List<std::string> *record = new List<std::string>;
+// TODO: remove vector ds
+Caso CSVReader::parseRow(std::string row, int *interest, int size) {
+  std::vector<std::string> fields;
   std::string col;
   for (char c : row) {
     if (c == '"' || c == '\r') continue;
     if (c == ',') {
-      record->append(col);
+      fields.push_back(col);
       col.clear();
       continue;
     }
     col.push_back(c);
   }
-  record->append(col);
+
+  Caso record(fields[interest[0]], fields[interest[1]], fields[interest[2]],
+              fields[interest[3]], fields[interest[4]], fields[interest[5]],
+              fields[interest[6]], fields[interest[7]]);
+  // record.toString();
+
   return record;
 }
 
-List<List<std::string> *> CSVReader::read() {
-  List<List<std::string> *> records;
+AVLTree<Caso> CSVReader::read() {
+  int interest[] = {0, 2, 3, 12, 13, 14, 17, 20};
+  int size = sizeof(interest) / sizeof(*interest);
+  AVLTree<Caso> records;
   std::string row;
   std::getline(this->ifs, row);  // Skip table header
   while (!this->ifs.eof()) {
     std::getline(this->ifs, row);
     if (row.empty()) continue;  // Skip empty row
-    records.append(parseRow(row));
+    records.insert(parseRow(row, interest, size));
   }
   return records;
 }

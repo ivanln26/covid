@@ -1,6 +1,8 @@
 #include <fstream>
+#include <vector>
 
-#include "ds/List.h"
+#include "Caso.h"
+#include "ds/AVLTree.h"
 
 #ifndef CSVREADER_H
 #define CSVREADER_H
@@ -12,8 +14,8 @@ class CSVReader {
  public:
   CSVReader(const char *);
   ~CSVReader();
-  List<std::string> *parseRow(std::string);
-  List<List<std::string> *> read();
+  Caso parseRow(std::string, int *, int);
+  AVLTree<Caso> read();
 };
 
 #endif
