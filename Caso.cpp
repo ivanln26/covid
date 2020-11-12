@@ -8,18 +8,19 @@ Caso::Caso(std::string id, std::string edad, std::string edad_anos_meses,
            std::string clasificacion_resumen) {
   this->id = std::stoi(id);
   this->edad = std::stoi(edad);
-  this->edad_anos_meses = (edad_anos_meses.compare("Años")) ? true : false;
-  this->cuidado_intensivo = (cuidado_intensivo.compare("NO")) ? false : true;
+  this->edad_anos_meses = (edad_anos_meses.compare("Años") == 0) ? true : false;
+  this->cuidado_intensivo =
+      (cuidado_intensivo.compare("NO") == 0) ? false : true;
   this->fecha_cui_intensivo = fecha_cui_intensivo;
-  this->fallecido = (fallecido.compare("NO")) ? false : true;
+  this->fallecido = (fallecido.compare("NO") == 0) ? false : true;
   this->carga_provincia_id = std::stoi(carga_provincia_id);
   this->clasificacion_resumen =
       (clasificacion_resumen.compare("Descartado")) ? false : true;
 }
 
-bool Caso::get_clasificacion(){return this->clasificacion_resumen}
+bool Caso::getClasificacion() { return this->clasificacion_resumen; }
 
-bool Caso::get_fallecido(){return this->get_fallecido()}
+bool Caso::getFallecido() { return this->fallecido; }
 
 bool Caso::operator>(Caso c) { return this->id > c.id; }
 

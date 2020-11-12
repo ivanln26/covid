@@ -82,13 +82,13 @@ void List<T>::prepend(T data) {
 
 template <class T>
 T List<T>::getData(int pos) {
-    if (pos < 0 || pos > this->size) throw 404;
+  if (pos < 0 || pos > this->size) throw 404;
 
-    Node<T> *aux = this->head;
-    for (int i = 0; i < pos; i++) {
-        aux = aux->getNext();
-    }
-    return aux->getData();
+  Node<T> *aux = this->head;
+  for (int i = 0; i < pos; i++) {
+    aux = aux->getNext();
+  }
+  return aux->getData();
 }
 
 template <class T>

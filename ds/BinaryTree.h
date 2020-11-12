@@ -14,6 +14,7 @@ class BinaryTree {
   BinaryTree();
   ~BinaryTree();
   void insert(T);
+  BinaryNode<T> *getRoot();
   bool isEmpty();
   void toString();
 };
@@ -52,6 +53,11 @@ BinaryNode<T> *BinaryTree<T>::insert(BinaryNode<T> *n, T data) {
   }
 
   return n;
+}
+
+template <class T>
+BinaryNode<T> *BinaryTree<T>::getRoot() {
+  return this->root;
 }
 
 template <class T>

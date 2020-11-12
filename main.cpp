@@ -2,6 +2,7 @@
 
 #include "CSVReader.h"
 #include "Caso.h"
+#include "Estadistica.h"
 #include "ds/BinaryTree.h"
 #include "ds/List.h"
 
@@ -11,15 +12,15 @@ int n_muestras = 0;
 int n_infectados = 0;
 int n_fallecidos = 0;
 
-void preOrder (BinaryNode<Caso>*node){
-    if (node == NULL) return;
-    n_muestras++;
-    if(node->getData().get_clasificacion())
-        n_infectados++;
-    if (node->getData().get_fallecido())
-        n_fallecidos++;
-    preOrder(node->getLeft());
-    preOrder(node->getRight());
+void preorder(BinaryNode<Caso> *node) {
+  if (node == NULL) return;
+
+  n_muestras++;
+  if (node->getData().getClasificacion()) n_infectados++;
+  if (node->getData().getFallecido()) n_fallecidos++;
+
+  preorder(node->getLeft());
+  preorder(node->getRight());
 };
 
 int main(int argc, char **argv) {
@@ -49,11 +50,15 @@ int main(int argc, char **argv) {
     }
     Caso caso(campos[0], campos[1], campos[2], campos[3], campos[4], campos[5],
               campos[6], campos[7]);
-    // caso.toString();
+    caso.toString();
     casos.insert(caso);
   }
 
-  casos.toString();
+  // casos.toString();
+  preorder(casos.getRoot());
+  Estadistica e(n_muestras, n_infectados, n_fallecidos, NULL, NULL);
+  e.calcularPorcentajes();
+  e.toString();
 
   return 0;
 }

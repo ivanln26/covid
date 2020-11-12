@@ -3,18 +3,18 @@
 
 template <class T>
 class BinaryNode {
-  private:
-    T data;
-    BinaryNode *left;
-    BinaryNode *right;
+ private:
+  T data;
+  BinaryNode *left;
+  BinaryNode *right;
 
-  public:
-    BinaryNode(T);
-    T getData();
-    BinaryNode<T> *getLeft();
-    BinaryNode<T> *getRight();
-    void setLeft(BinaryNode<T> *);
-    void setRight(BinaryNode<T> *);
+ public:
+  BinaryNode(T);
+  T getData();
+  BinaryNode<T> *getLeft();
+  BinaryNode<T> *getRight();
+  void setLeft(BinaryNode<T> *);
+  void setRight(BinaryNode<T> *);
 };
 
 template <class T>

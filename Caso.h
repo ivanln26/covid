@@ -21,11 +21,11 @@ class Caso {
   Caso();
   Caso(std::string, std::string, std::string, std::string, std::string,
        std::string, std::string, std::string);
+  bool getClasificacion();
+  bool getFallecido();
   bool operator>(Caso);
   bool operator<(Caso);
   bool operator==(Caso);
-  bool get_clasificacion();
-  bool get_fallecido();
   void toString();
 };
 
