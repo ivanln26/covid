@@ -2,6 +2,7 @@
 
 #include "CSVReader.h"
 #include "Caso.h"
+#include "Estadistica.h"
 #include "ds/AVLTree.h"
 
 using namespace std;
@@ -22,6 +23,8 @@ int main(int argc, char **argv) {
 
   AVLTree<Caso> casos = r.read();
   casos.toString();
+  Estadistica e(casos.getRoot());
+  e.toString();
 
   return 0;
 }

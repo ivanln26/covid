@@ -1,10 +1,12 @@
 #include <iostream>
 
 #include "Caso.h"
-#include "ds/BinaryNode.h"
+#include "ds/AVLNode.h"
 
 #ifndef CMAKE_COVID_ESTADISTICA_H
 #define CMAKE_COVID_ESTADISTICA_H
+
+#define RANGO_ETARIO 14
 
 class Estadistica {
  private:
@@ -15,10 +17,11 @@ class Estadistica {
   float porcentaje_fallecidos;
   int *n_infectados_edad;
   int *n_fallecidos_edad;
-  void preorder(BinaryNode<Caso> *);
+  void preorder(AVLNode<Caso> *);
 
  public:
-  Estadistica(BinaryNode<Caso> *);
+  Estadistica(AVLNode<Caso> *);
+  ~Estadistica();
   void toString();
 };
 

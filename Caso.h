@@ -22,6 +22,7 @@ class Caso {
   Caso(std::string, std::string, std::string, std::string, std::string,
        std::string, std::string, std::string);
   bool getClasificacion();
+  uint16 getEdad();
   bool getFallecido();
   bool operator>(Caso);
   bool operator<(Caso);
