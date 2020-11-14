@@ -5,6 +5,7 @@
 #include "Contador.h"
 #include "Estadistica.h"
 #include "ds/AVLTree.h"
+#include "Fecha.h"
 
 using namespace std;
 
@@ -31,6 +32,12 @@ int main(int argc, char **argv) {
   Contador c(casos.getRoot());
   c.contarPCasos(24);
   c.contarPMuertes(24);
+  c.casoEdad(53);
+  c.casosIntensivos();
+
+  std::string fecha("2020-06-01");
+  Fecha f(fecha);
+  f.toString();
 
   return 0;
 }
