@@ -23,6 +23,7 @@ class List {
   bool isEmpty();
   T operator[](int);
   void toString();
+  Node<T> *gethead();
 };
 
 template <class T>
@@ -120,6 +121,11 @@ void List<T>::toString() {
     aux = aux->getNext();
   }
   std::cout << "NULL" << std::endl;
+}
+
+template <class T>
+Node<T> *List<T>::gethead() {
+    return this->head;
 }
 
 #endif

@@ -45,6 +45,7 @@ void Caso::toString() {
   printf("| %d ", this->id);
   printf("| %3d ", this->edad);
   printf("| %d ", this->edad_anos_meses);
+  printf("| %19s ", this->carga_provincia_nombre.c_str());
   printf("| %d ", this->cuidado_intensivo);
   printf("| %10s ", this->fecha_cui_intensivo.c_str());
   printf("| %d ", this->fallecido);

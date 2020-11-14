@@ -2,6 +2,7 @@
 
 #include "Caso.h"
 #include "ds/AVLNode.h"
+#include "ds/List.h"
 
 #ifndef CONTADOR_H
 #define CONTADOR_H
@@ -38,14 +39,17 @@ class Contador {
   };
   int p_casos[N_PROVINCIAS];
   int p_muertes[N_PROVINCIAS];
+  List<Caso> casosEdad;
   AVLNode<Caso> *root;
   void contarPCasos(AVLNode<Caso> *);
   void contarPMuertes(AVLNode<Caso> *);
+  void casoEdad(AVLNode<Caso> *, int);
 
  public:
   Contador(AVLNode<Caso> *);
   void contarPCasos(int);
   void contarPMuertes(int);
+  void casoEdad(int);
 };
 
 #endif

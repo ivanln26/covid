@@ -61,3 +61,21 @@ void Contador::contarPMuertes(AVLNode<Caso> *n) {
   this->contarPMuertes(n->getLeft());
   this->contarPMuertes(n->getRight());
 }
+
+void Contador::casoEdad(int ano) {
+    this->casoEdad(this->root, ano);
+    Node<Caso>*aux = this->casosEdad.gethead();
+    while (aux != NULL ){
+        aux->getData().toString();
+        aux = aux->getNext();
+    }
+}
+
+void Contador::casoEdad(AVLNode<Caso> *node, int ano) {
+    if (node == NULL) return;
+    if (node->getData().getEdad() == ano){
+        this->casosEdad.prepend(node->getData());
+    }
+    this->casoEdad(node->getLeft(), ano);
+    this->casoEdad(node->getRight(), ano);
+}
