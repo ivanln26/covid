@@ -37,12 +37,15 @@ class Contador {
       "Tucumán",
   };
   int p_casos[N_PROVINCIAS];
+  int p_muertes[N_PROVINCIAS];
   AVLNode<Caso> *root;
   void contarPCasos(AVLNode<Caso> *);
+  void contarPMuertes(AVLNode<Caso> *);
 
  public:
   Contador(AVLNode<Caso> *);
   void contarPCasos(int);
+  void contarPMuertes(int);
 };
 
 #endif

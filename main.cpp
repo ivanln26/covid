@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
 
   Contador c(casos.getRoot());
   c.contarPCasos(24);
+  c.contarPMuertes(24);
 
   return 0;
 }

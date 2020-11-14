@@ -1,8 +1,6 @@
 #include "Contador.h"
 
-Contador::Contador(AVLNode<Caso> *root) {
-  this->root = root;
-}
+Contador::Contador(AVLNode<Caso> *root) { this->root = root; }
 
 void Contador::contarPCasos(int n) {
   for (int i = 0; i < N_PROVINCIAS; i++) {
@@ -32,4 +30,34 @@ void Contador::contarPCasos(AVLNode<Caso> *n) {
 
   this->contarPCasos(n->getLeft());
   this->contarPCasos(n->getRight());
+}
+
+void Contador::contarPMuertes(int n) {
+  for (int i = 0; i < N_PROVINCIAS; i++) {
+    this->p_muertes[i] = 0;
+  }
+
+  this->contarPMuertes(this->root);
+
+  int total = 0;
+  for (int i = 0; i < N_PROVINCIAS; i++) {
+    printf("%s: %d\n", this->provincias[i].c_str(), this->p_muertes[i]);
+    total += this->p_muertes[i];
+  }
+  printf("Total: %d\n", total);
+}
+
+void Contador::contarPMuertes(AVLNode<Caso> *n) {
+  if (n == NULL) return;
+
+  std::string provincia = n->getData().getProvincia();
+  for (int i = 0; i < N_PROVINCIAS; i++) {
+    if (this->provincias[i].compare(provincia) == 0 &&
+        n->getData().getFallecido()) {
+      this->p_muertes[i]++;
+    }
+  }
+
+  this->contarPMuertes(n->getLeft());
+  this->contarPMuertes(n->getRight());
 }
