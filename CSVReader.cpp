@@ -27,14 +27,14 @@ Caso CSVReader::parseRow(std::string row, int *interest, int size) {
 
   Caso record(fields[interest[0]], fields[interest[1]], fields[interest[2]],
               fields[interest[3]], fields[interest[4]], fields[interest[5]],
-              fields[interest[6]], fields[interest[7]]);
+              fields[interest[6]], fields[interest[7]], fields[interest[8]]);
   // record.toString();
 
   return record;
 }
 
 AVLTree<Caso> CSVReader::read() {
-  int interest[] = {0, 2, 3, 12, 13, 14, 17, 20};
+  int interest[] = {0, 2, 3, 7, 12, 13, 14, 17, 20};
   int size = sizeof(interest) / sizeof(*interest);
   AVLTree<Caso> records;
   std::string row;

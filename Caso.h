@@ -11,6 +11,7 @@ class Caso {
   uint32 id;
   uint16 edad;
   bool edad_anos_meses;
+  std::string carga_provincia_nombre;
   bool cuidado_intensivo;
   std::string fecha_cui_intensivo;  // TODO: date class
   bool fallecido;
@@ -20,10 +21,11 @@ class Caso {
  public:
   Caso();
   Caso(std::string, std::string, std::string, std::string, std::string,
-       std::string, std::string, std::string);
+       std::string, std::string, std::string, std::string);
   bool getClasificacion();
   uint16 getEdad();
   bool getFallecido();
+  std::string getProvincia();
   bool operator>(Caso);
   bool operator<(Caso);
   bool operator==(Caso);
