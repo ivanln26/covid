@@ -35,6 +35,8 @@ bool Caso::getFallecido() { return this->fallecido; }
 
 std::string Caso::getProvincia() { return this->carga_provincia_nombre; }
 
+bool Caso::getCuidado_intensivo() { return this->cuidado_intensivo; }
+
 bool Caso::operator>(Caso c) { return this->id > c.id; }
 
 bool Caso::operator<(Caso c) { return this->id < c.id; }

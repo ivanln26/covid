@@ -26,6 +26,7 @@ class Caso {
   uint16 getEdad();
   bool getFallecido();
   std::string getProvincia();
+  bool getCuidado_intensivo();
   bool operator>(Caso);
   bool operator<(Caso);
   bool operator==(Caso);

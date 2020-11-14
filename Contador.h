@@ -40,16 +40,19 @@ class Contador {
   int p_casos[N_PROVINCIAS];
   int p_muertes[N_PROVINCIAS];
   List<Caso> casosEdad;
+  List<Caso> cuidadoIntensivo;
   AVLNode<Caso> *root;
   void contarPCasos(AVLNode<Caso> *);
   void contarPMuertes(AVLNode<Caso> *);
   void casoEdad(AVLNode<Caso> *, int);
+  void casosIntensivos(AVLNode<Caso> *);
 
  public:
   Contador(AVLNode<Caso> *);
   void contarPCasos(int);
   void contarPMuertes(int);
   void casoEdad(int);
+  void casosIntensivos();
 };
 
 #endif

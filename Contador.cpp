@@ -79,3 +79,21 @@ void Contador::casoEdad(AVLNode<Caso> *node, int ano) {
     this->casoEdad(node->getLeft(), ano);
     this->casoEdad(node->getRight(), ano);
 }
+
+void Contador::casosIntensivos() {
+    this->casosIntensivos(this->root);
+    Node<Caso>*aux = this->cuidadoIntensivo.gethead();
+    while (aux != NULL){
+        aux->getData().toString();
+        aux = aux->getNext();
+    }
+}
+
+void Contador::casosIntensivos(AVLNode<Caso> *node) {
+    if (node == NULL) return;
+    if (node->getData().getCuidado_intensivo()){
+        this->cuidadoIntensivo.prepend(node->getData());
+    }
+    this->casosIntensivos(node->getLeft());
+    this->casosIntensivos(node->getRight());
+}
