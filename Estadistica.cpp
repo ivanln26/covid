@@ -48,8 +48,8 @@ void Estadistica::toString() {
   std::cout << this->n_muestras << std::endl;
   std::cout << this->n_infectados << std::endl;
   std::cout << this->n_fallecidos << std::endl;
-  std::cout << this->porcentaje_infectados << std::endl;
-  std::cout << this->porcentaje_fallecidos << std::endl;
+  printf("%.2f%%\n", this->porcentaje_infectados);
+  printf("%.2f%%\n", this->porcentaje_fallecidos);
 
   std::cout << "[ ";
   for (int i = 0; i < RANGO_ETARIO; i++) {
@@ -58,7 +58,6 @@ void Estadistica::toString() {
   std::cout << "]" << std::endl;
 
   std::cout << "[ ";
-  int counter = 0;
   for (int i = 0; i < RANGO_ETARIO; i++) {
     std::cout << this->n_fallecidos_edad[i] << " ";
   }
