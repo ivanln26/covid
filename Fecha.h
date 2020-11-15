@@ -10,7 +10,11 @@ private:
     int mes;
     int ano;
 public:
+    Fecha();
     Fecha(std::string);
+    int getdia();
+    int getmes();
+    int getano();
     bool operator>(Fecha);
     bool operator<(Fecha);
     bool operator==(Fecha);

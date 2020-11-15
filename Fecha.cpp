@@ -1,5 +1,7 @@
 #include "Fecha.h"
 
+Fecha::Fecha() {}
+
 //2020-06-01
 //2020
 Fecha::Fecha(std::string fecha) {
@@ -56,5 +58,14 @@ bool Fecha::operator==(Fecha f) {
     return true;
 }
 
+int Fecha::getano() {
+    return this->ano;
+}
 
+int Fecha::getmes() {
+    return this->mes;
+}
 
+int Fecha::getdia() {
+    return this->dia;
+}

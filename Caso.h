@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Fecha.h"
 
 #ifndef CASO_H
 #define CASO_H
@@ -13,7 +14,7 @@ class Caso {
   bool edad_anos_meses;
   std::string carga_provincia_nombre;
   bool cuidado_intensivo;
-  std::string fecha_cui_intensivo;  // TODO: date class
+  Fecha *fecha_cui_intensivo;  // TODO: date class
   bool fallecido;
   uint16 carga_provincia_id;
   bool clasificacion_resumen;

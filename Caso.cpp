@@ -15,7 +15,8 @@ Caso::Caso(std::string id, std::string edad, std::string edad_anos_meses,
   this->carga_provincia_nombre = carga_provincia_nombre;
   this->cuidado_intensivo =
       (cuidado_intensivo.compare("NO") == 0) ? false : true;
-  this->fecha_cui_intensivo = fecha_cui_intensivo;
+  if (!fecha_cui_intensivo.empty()) this->fecha_cui_intensivo = new Fecha(fecha_cui_intensivo);
+  else this->fecha_cui_intensivo = NULL;
   this->fallecido = (fallecido.compare("NO") == 0) ? false : true;
   this->carga_provincia_id = std::stoi(carga_provincia_id);
   this->clasificacion_resumen =
@@ -49,8 +50,11 @@ void Caso::toString() {
   printf("| %d ", this->edad_anos_meses);
   printf("| %19s ", this->carga_provincia_nombre.c_str());
   printf("| %d ", this->cuidado_intensivo);
-  printf("| %10s ", this->fecha_cui_intensivo.c_str());
+  if (this->fecha_cui_intensivo != NULL) {
+      printf("| %4d/%02d/%02d ", this->fecha_cui_intensivo->getano(),this->fecha_cui_intensivo->getmes(),this->fecha_cui_intensivo->getdia());
+  } else printf("| %10s " , " ");
   printf("| %d ", this->fallecido);
   printf("| %2d ", this->carga_provincia_id);
   printf("| %d |\n", this->clasificacion_resumen);
 }
+
