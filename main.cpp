@@ -4,6 +4,7 @@
 
 #include "Case.h"
 #include "CaseArray.h"
+#include "Statistics.h"
 #include "ds/List.h"
 
 using namespace std;
@@ -80,9 +81,15 @@ int main(int argc, char **argv) {
     cases.append(c);
   }
 
+  /*
   for (int i = 0; i < cases.getSize(); i++) {
     cases[i].toString();
   }
+  */
+
+  Statistics s;
+  s.calculate(cases);
+  s.toString();
 
   ifs.close();
 
