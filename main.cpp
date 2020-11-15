@@ -4,10 +4,46 @@
 
 #include "Case.h"
 #include "CaseArray.h"
+#include "Date.h"
+#include "ProvinceCounter.h"
 #include "Statistics.h"
-#include "ds/List.h"
 
 using namespace std;
+
+void quickSortIntensive(CaseArray arr, int start, int end) {
+  int middle = (start + end) / 2;
+  Date pivot = arr[middle].intensive_date;
+  int i = start;
+  int j = end;
+
+  do {
+    while (arr[i].intensive_date < pivot) i++;
+    while (arr[j].intensive_date > pivot) j--;
+
+    if (i <= j) {
+      arr.swap(i, j);
+      i++;
+      j--;
+    }
+  } while (i <= j);
+
+  if (j > start) quickSortIntensive(arr, start, j);
+  if (i < end) quickSortIntensive(arr, i, end);
+}
+
+CaseArray intensiveCases(CaseArray arr) {
+  Case c;
+  Date d(2020, 11, 12);
+  CaseArray intensive_cases(arr.getSize());
+  for (int i = 0; i < arr.getSize(); i++) {
+    c = arr[i];
+    if (c.is_intensive && c.intensive_date >= d) {
+      intensive_cases.append(c);
+    }
+  }
+  quickSortIntensive(intensive_cases, 0, intensive_cases.getSize() - 1);
+  return intensive_cases;
+}
 
 int main(int argc, char **argv) {
   cout << "Argumentos: " << argc << endl;
@@ -57,12 +93,13 @@ int main(int argc, char **argv) {
           c.is_intensive = (!col.compare("SI")) ? true : false;
           count++;
           break;
-        case 13:
+        case 13: {
           count++;
           if (col.empty()) break;
           col = col.substr(1, col.size() - 2);
-          c.intensive_date = col;
+          c.intensive_date.fromISO(col);
           break;
+        }
         case 14:
           count++;
           if (col.empty()) break;
@@ -85,11 +122,20 @@ int main(int argc, char **argv) {
   for (int i = 0; i < cases.getSize(); i++) {
     cases[i].toString();
   }
-  */
 
   Statistics s;
   s.calculate(cases);
   s.toString();
+
+  ProvinceCounter pc;
+  pc.count(cases);
+  pc.toString();
+  */
+
+  CaseArray intensive_cases = intensiveCases(cases);
+  for (int i = 0; i < intensive_cases.getSize(); i++) {
+    intensive_cases[i].toString();
+  }
 
   ifs.close();
 

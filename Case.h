@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include "Date.h"
+
 using namespace std;
 
 #ifndef CASE_H
@@ -12,7 +14,7 @@ class Case {
   bool is_years;
   string province_name;
   bool is_intensive;
-  string intensive_date;
+  Date intensive_date;
   bool is_dead;
   string summary;
   Case();
@@ -25,7 +27,6 @@ Case::Case() {
   this->is_years = false;
   this->province_name = "";
   this->is_intensive = false;
-  this->intensive_date = "";
   this->is_dead = false;
   this->summary = "";
 }
@@ -36,7 +37,8 @@ void Case::toString() {
   printf("| %d ", this->is_years);
   printf("| %20s ", this->province_name.c_str());
   printf("| %d ", this->is_intensive);
-  printf("| %10s ", this->intensive_date.c_str());
+  this->intensive_date.toString();
+  // printf("| %10s ", this->intensive_date.c_str());
   printf("| %d ", this->is_dead);
   printf("| %12s |\n", this->summary.c_str());
 }

@@ -29,8 +29,7 @@ void CaseArray::append(Case c) {
 }
 
 void CaseArray::swap(int i, int j) {
-  Case aux;
-  aux = this->arr[i];
+  Case aux = this->arr[i];
   this->arr[i] = this->arr[j];
   this->arr[j] = aux;
 }
