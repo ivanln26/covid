@@ -42,6 +42,7 @@ class Contador {
   List<Caso> casosEdad;
   List<Caso> cuidadoIntensivo;
   AVLNode<Caso> *root;
+  void quickSort(int *, int, int);
   void contarPCasos(AVLNode<Caso> *);
   void contarPMuertes(AVLNode<Caso> *);
   void casoEdad(AVLNode<Caso> *, int);

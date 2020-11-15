@@ -2,12 +2,43 @@
 
 Contador::Contador(AVLNode<Caso> *root) { this->root = root; }
 
+void Contador::quickSort(int *arr, int start, int end) {
+  int i, j, middle;
+  int aux, pivot;
+  std::string aux_prov;
+
+  middle = (start + end) / 2;
+  pivot = arr[middle];
+  i = start;
+  j = end;
+
+  do {
+    while (arr[i] > pivot) i++;
+    while (arr[j] < pivot) j--;
+
+    if (i <= j) {
+      aux = arr[i];
+      arr[i] = arr[j];
+      arr[j] = aux;
+      aux_prov = provincias[i];
+      provincias[i] = provincias[j];
+      provincias[j] = aux_prov;
+      i++;
+      j--;
+    }
+  } while (i <= j);
+
+  if (j > start) quickSort(arr, start, j);
+  if (i < end) quickSort(arr, i, end);
+}
+
 void Contador::contarPCasos(int n) {
   for (int i = 0; i < N_PROVINCIAS; i++) {
     this->p_casos[i] = 0;
   }
 
   this->contarPCasos(this->root);
+  this->quickSort(this->p_casos, 0, N_PROVINCIAS - 1);
 
   int total = 0;
   for (int i = 0; i < N_PROVINCIAS; i++) {
@@ -38,6 +69,7 @@ void Contador::contarPMuertes(int n) {
   }
 
   this->contarPMuertes(this->root);
+  this->quickSort(this->p_muertes, 0, N_PROVINCIAS - 1);
 
   int total = 0;
   for (int i = 0; i < N_PROVINCIAS; i++) {
@@ -97,3 +129,4 @@ void Contador::casosIntensivos(AVLNode<Caso> *node) {
     this->casosIntensivos(node->getLeft());
     this->casosIntensivos(node->getRight());
 }
+
