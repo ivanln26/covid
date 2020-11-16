@@ -10,6 +10,40 @@
 
 using namespace std;
 
+void quickSortAge(CaseArray arr, int start, int end) {
+  int middle = (start + end) / 2;
+  string pivot = arr[middle].province_name;
+  int i = start;
+  int j = end;
+
+  do {
+    while (arr[i].province_name < pivot) i++;
+    while (arr[j].province_name > pivot) j--;
+
+    if (i <= j) {
+      arr.swap(i, j);
+      i++;
+      j--;
+    }
+  } while (i <= j);
+
+  if (j > start) quickSortAge(arr, start, j);
+  if (i < end) quickSortAge(arr, i, end);
+}
+
+CaseArray ageCases(CaseArray arr, int age) {
+  Case c;
+  CaseArray age_cases(arr.getSize());
+  for (int i = 0; i < arr.getSize(); i++) {
+    c = arr[i];
+    if (c.is_years && c.age == age) {
+      age_cases.append(c);
+    }
+  }
+  quickSortAge(age_cases, 0, age_cases.getSize() - 1);
+  return age_cases;
+}
+
 void quickSortIntensive(CaseArray arr, int start, int end) {
   int middle = (start + end) / 2;
   Date pivot = arr[middle].intensive_date;
@@ -38,6 +72,7 @@ CaseArray intensiveCases(CaseArray arr) {
   for (int i = 0; i < arr.getSize(); i++) {
     c = arr[i];
     if (c.is_intensive && c.intensive_date >= d) {
+      c.toString();
       intensive_cases.append(c);
     }
   }
@@ -132,10 +167,17 @@ int main(int argc, char **argv) {
   pc.toString();
   */
 
+  CaseArray age_cases = ageCases(cases, 20);
+  for (int i = 0; i < age_cases.getSize(); i++) {
+    age_cases[i].toString();
+  }
+
+  /*
   CaseArray intensive_cases = intensiveCases(cases);
   for (int i = 0; i < intensive_cases.getSize(); i++) {
     intensive_cases[i].toString();
   }
+  */
 
   ifs.close();
 
