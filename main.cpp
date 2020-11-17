@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 
+#include "Arguments.h"
 #include "Case.h"
 #include "CaseArray.h"
 #include "Date.h"
@@ -81,10 +82,8 @@ CaseArray intensiveCases(CaseArray arr) {
 }
 
 int main(int argc, char **argv) {
-  cout << "Argumentos: " << argc << endl;
-  for (int i = 0; i < argc; i++) {
-    cout << argv[i] << endl;
-  }
+  Arguments arg;
+  arg.parse(argc, argv);
 
   ifstream ifs("testdata/Covid19Casos.csv");
 
@@ -153,31 +152,11 @@ int main(int argc, char **argv) {
     cases.append(c);
   }
 
-  /*
-  for (int i = 0; i < cases.getSize(); i++) {
-    cases[i].toString();
+  if (arg.getEstad()) {
+    Statistics s;
+    s.calculate(cases);
+    s.toString();
   }
-
-  Statistics s;
-  s.calculate(cases);
-  s.toString();
-
-  ProvinceCounter pc;
-  pc.count(cases);
-  pc.toString();
-  */
-
-  CaseArray age_cases = ageCases(cases, 20);
-  for (int i = 0; i < age_cases.getSize(); i++) {
-    age_cases[i].toString();
-  }
-
-  /*
-  CaseArray intensive_cases = intensiveCases(cases);
-  for (int i = 0; i < intensive_cases.getSize(); i++) {
-    intensive_cases[i].toString();
-  }
-  */
 
   ifs.close();
 

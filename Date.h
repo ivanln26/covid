@@ -81,7 +81,8 @@ bool Date::operator>=(Date d) {
 }
 
 void Date::toString() {
-  printf("| %4d/%02d/%02d ", this->year, this->month, this->day);
+  if (this->year != 0) printf("| %4d/%02d/%02d ", this->year, this->month, this->day);
+  else printf("| %10s ", "");
 }
 
 #endif
