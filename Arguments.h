@@ -21,6 +21,7 @@ class Arguments {
  public:
   Arguments();
   void parse(int, char **);
+  char *getFilename();
   bool getEstad();
   int getPCasos();
   int getPMuertes();
@@ -69,6 +70,7 @@ void Arguments::parse(int argc, char **argv) {
     printf("%s no es un archivo CSV\n", str);
     exit(1);
   }
+  this->filename = str;
 
   char *next;
   for (int i = 1; i < argc - 1; i++) {
@@ -103,6 +105,8 @@ void Arguments::parse(int argc, char **argv) {
     }
   }
 }
+
+char *Arguments::getFilename() { return this->filename; }
 
 bool Arguments::getEstad() { return this->estad; }
 
