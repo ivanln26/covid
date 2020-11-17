@@ -158,6 +158,21 @@ int main(int argc, char **argv) {
     s.toString();
   }
 
+  ProvinceCounter pc;
+  pc.count(cases);
+
+  if (arg.getPCasos() == -1)
+    pc.printPInfected();
+  else
+    pc.printPInfected(arg.getPCasos());
+
+  if (arg.getPMuertes() == -1)
+    pc.printPDeaths();
+  else
+    pc.printPDeaths(arg.getPMuertes());
+
+  if (arg.getCasosEdad() >= 0) ageCases(cases, arg.getCasosEdad()).toString();
+
   ifs.close();
 
   return 0;

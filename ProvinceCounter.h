@@ -38,7 +38,10 @@ class ProvinceCounter {
  public:
   ProvinceCounter();
   void count(CaseArray);
-  void toString();
+  void printPInfected();
+  void printPInfected(int);
+  void printPDeaths();
+  void printPDeaths(int);
 };
 
 ProvinceCounter::ProvinceCounter() {
@@ -100,16 +103,30 @@ void ProvinceCounter::count(CaseArray arr) {
   // this->quickSort(this->p_deaths, 0, N_PROVINCES - 1);
 }
 
-void ProvinceCounter::toString() {
+void ProvinceCounter::printPInfected() {
   for (int i = 0; i < N_PROVINCES; i++) {
     printf("%s: %d\n", this->provinces[i].c_str(), this->p_infected[i]);
   }
+}
 
-  /*
+void ProvinceCounter::printPInfected(int n) {
+  if (n > N_PROVINCES) n = N_PROVINCES;
+  for (int i = 0; i < n; i++) {
+    printf("%s: %d\n", this->provinces[i].c_str(), this->p_infected[i]);
+  }
+}
+
+void ProvinceCounter::printPDeaths() {
   for (int i = 0; i < N_PROVINCES; i++) {
     printf("%s: %d\n", this->provinces[i].c_str(), this->p_deaths[i]);
   }
-  */
+}
+
+void ProvinceCounter::printPDeaths(int n) {
+  if (n > N_PROVINCES) n = N_PROVINCES;
+  for (int i = 0; i < n; i++) {
+    printf("%s: %d\n", this->provinces[i].c_str(), this->p_deaths[i]);
+  }
 }
 
 #endif

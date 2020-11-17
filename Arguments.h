@@ -29,8 +29,8 @@ class Arguments {
 
 Arguments::Arguments() {
   this->estad = false;
-  this->p_casos = -1;
-  this->p_muertes = -1;
+  this->p_casos = 0;
+  this->p_muertes = 0;
   this->casos_edad = -1;
 }
 
@@ -54,7 +54,8 @@ bool Arguments::checkNext(char *str) {
 }
 
 bool Arguments::isNumber(char c) {
-  return c == '0' || c == '1' || c == '2';
+  return c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' ||
+         c == '6' || c == '7' || c == '8' || c == '9';
 }
 
 void Arguments::parse(int argc, char **argv) {
@@ -80,29 +81,35 @@ void Arguments::parse(int argc, char **argv) {
       next = argv[i + 1];
 
       if (strcmp(argv[i], "-p_casos") == 0) {
-        if (this->checkNext(next)) {
+        if (this->checkNext(next))
           this->p_casos = atoi(next);
-          continue;
-        }
+        else
+          this->p_casos = -1;
+        continue;
       }
 
-      if (strcmp(argv[i], "-p_murtes") == 0) {
-        if (this->checkNext(next)) {
+      if (strcmp(argv[i], "-p_muertes") == 0) {
+        if (this->checkNext(next))
           this->p_muertes = atoi(next);
-          continue;
-        }
+        else
+          this->p_muertes = -1;
+        continue;
       }
 
-      if (strcmp(argv[i], "-casos_edad") == 0) {
-        if (this->checkNext(next) == 0) {
-          this->casos_edad = atoi(next);
-          continue;
-        }
+      if (strcmp(argv[i], "-casos_edad") == 0 && this->checkNext(next)) {
+        this->casos_edad = atoi(next);
+        continue;
       }
     }
   }
 }
 
 bool Arguments::getEstad() { return this->estad; }
+
+int Arguments::getPCasos() { return this->p_casos; }
+
+int Arguments::getPMuertes() { return this->p_muertes; }
+
+int Arguments::getCasosEdad() { return this->casos_edad; }
 
 #endif

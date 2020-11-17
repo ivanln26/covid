@@ -15,6 +15,7 @@ class CaseArray {
   void swap(int, int);
   Case operator[](int i);
   int getSize();
+  void toString();
 };
 
 CaseArray::CaseArray(int capacity) {
@@ -37,5 +38,11 @@ void CaseArray::swap(int i, int j) {
 Case CaseArray::operator[](int i) { return arr[i]; };
 
 int CaseArray::getSize() { return this->size; }
+
+void CaseArray::toString() {
+  for (int i = 0; i < this->size; i++) {
+    this->arr[i].toString();
+  }
+}
 
 #endif
