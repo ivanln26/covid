@@ -3,6 +3,8 @@
 
 #define N_PROVINCES 24
 
+// ProvinceCounter represents an array of provinces with their repective
+// conunters
 class ProvinceCounter {
  private:
   string provinces[N_PROVINCES] = {
@@ -31,8 +33,8 @@ class ProvinceCounter {
       "Tierra del Fuego",
       "Tucumán",
   };
-  int p_infected[N_PROVINCES];
-  int p_deaths[N_PROVINCES];
+  int p_infected[N_PROVINCES];  // infected cases by province
+  int p_deaths[N_PROVINCES];    // death cases by province
   void swap(int, int);
   void quickSort(int *arr, int, int);
 
@@ -45,6 +47,7 @@ class ProvinceCounter {
   void printPDeaths(int);
 };
 
+// ProvinceCounter default contructor sets all counters to 0
 ProvinceCounter::ProvinceCounter() {
   for (int i = 0; i < N_PROVINCES; i++) {
     this->p_infected[i] = 0;
@@ -52,6 +55,7 @@ ProvinceCounter::ProvinceCounter() {
   }
 }
 
+// swap swaps the province with its counters
 void ProvinceCounter::swap(int i, int j) {
   int aux;
   std::string province;
@@ -69,6 +73,7 @@ void ProvinceCounter::swap(int i, int j) {
   this->p_deaths[j] = aux;
 }
 
+// quickSort sorts an integer counter array arr from highest to lowest
 void ProvinceCounter::quickSort(int *arr, int start, int end) {
   int i, j, middle;
   int aux, pivot;
@@ -94,6 +99,8 @@ void ProvinceCounter::quickSort(int *arr, int start, int end) {
   if (i < end) this->quickSort(arr, i, end);
 }
 
+// count reads a CaseArray arr and checks if it is a confirmed case or a death
+// then adds one to the respective province counter
 void ProvinceCounter::count(CaseArray arr) {
   Case c;
   bool is_province;

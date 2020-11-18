@@ -39,7 +39,7 @@ Date::Date(int year, int month, int day) {
   this->day = day;
 }
 
-// fromISO reads a ISO 8601 date and sets its attributes
+// fromISO reads a ISO 8601
 void Date::fromISO(string date_s) {
   stringstream ss(date_s);
   string data;

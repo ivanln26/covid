@@ -6,6 +6,7 @@
 #ifndef ARGUMENTS_H
 #define ARGUMENTS_H
 
+// Arguments represents all the arguments used in the program.
 class Arguments {
  private:
   char *filename;
@@ -30,6 +31,7 @@ class Arguments {
   Date getCasosCui();
 };
 
+// Arguments contructor used to set flag defaults
 Arguments::Arguments() {
   this->estad = false;
   this->p_casos = 0;
@@ -38,6 +40,7 @@ Arguments::Arguments() {
   this->casos_cui = Date(-1, -1, -1);
 }
 
+// hasCSV reports whether a string has the .csv extension
 bool Arguments::hasCSV(char *str) {
   size_t str_l = strlen(str);
 
@@ -49,6 +52,7 @@ bool Arguments::hasCSV(char *str) {
   return strncmp(str + str_l - suffix_l, suffix, suffix_l) == 0;
 }
 
+// checkDate reports whether a string is a date in ISO 8601 format
 bool Arguments::checkDate(char *str) {
   size_t size = strlen(str);
 
@@ -74,6 +78,8 @@ bool Arguments::checkDate(char *str) {
   return true;
 }
 
+// checkNext reports whethera string is valid to use as an option for an
+// argument
 bool Arguments::checkNext(char *str) {
   size_t size = strlen(str);
   for (int i = 0; i < size; i++) {
@@ -82,18 +88,20 @@ bool Arguments::checkNext(char *str) {
   return true;
 }
 
+// isNumber reports if a character is a number
 bool Arguments::isNumber(char c) {
   return c == '0' || c == '1' || c == '2' || c == '3' || c == '4' || c == '5' ||
          c == '6' || c == '7' || c == '8' || c == '9';
 }
 
+// parse reads an interpret command line arguments
 void Arguments::parse(int argc, char **argv) {
   if (argc < 2) {
     printf("Pocos argumentos\n");
     exit(1);
   }
 
-  char *str = argv[argc - 1];
+  char *str = argv[argc - 1];  // the last argument must be a csv file
   if (!this->hasCSV(str)) {
     printf("%s no es un archivo CSV\n", str);
     exit(1);

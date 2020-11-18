@@ -7,6 +7,7 @@ using namespace std;
 #ifndef CASE_H
 #define CASE_H
 
+// Case represents a COVID19 sample in Argentina
 class Case {
  public:
   int id;
@@ -21,6 +22,7 @@ class Case {
   void toString();
 };
 
+// Case contructor with default values
 Case::Case() {
   this->id = 0;
   this->age = 0;
@@ -37,7 +39,6 @@ void Case::toString() {
   printf("| %d ", this->is_years);
   printf("| %d ", this->is_intensive);
   this->intensive_date.toString();
-  // printf("| %10s ", this->intensive_date.c_str());
   printf("| %d ", this->is_dead);
   printf("| %12s ", this->summary.c_str());
   printf("| %-20s\n", this->province_name.c_str());

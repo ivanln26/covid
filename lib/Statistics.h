@@ -3,6 +3,7 @@
 
 #define N_AGE_RANGE 14
 
+// Statistics represents a statistics of a CaseArray
 class Statistics {
  private:
   int n_samples;
@@ -20,6 +21,7 @@ class Statistics {
   void toString();
 };
 
+// Statistics default contructuor sets all its counters to 0
 Statistics::Statistics() {
   this->n_samples = 0;
   this->n_infected = 0;
@@ -41,6 +43,8 @@ Statistics::~Statistics() {
   this->n_deaths_age = NULL;
 }
 
+// calculate reads a CaseArray and add one to respective counter
+// finally calculate some porcentages
 void Statistics::calculate(CaseArray arr) {
   Case c;
   int age_range;
