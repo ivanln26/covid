@@ -2,13 +2,13 @@
 #include <iostream>
 #include <sstream>
 
-#include "Arguments.h"
-#include "Case.h"
-#include "CaseArray.h"
-#include "Date.h"
-#include "Filters.h"
-#include "ProvinceCounter.h"
-#include "Statistics.h"
+#include "lib/Arguments.h"
+#include "lib/Case.h"
+#include "lib/CaseArray.h"
+#include "lib/Date.h"
+#include "lib/Filters.h"
+#include "lib/ProvinceCounter.h"
+#include "lib/Statistics.h"
 
 using namespace std;
 
