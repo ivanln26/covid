@@ -15,6 +15,7 @@ class Arguments {
   int casos_edad;
   Date casos_cui;
   bool hasCSV(char *);
+  bool checkDate(char *);
   bool checkNext(char *);
   bool isNumber(char);
 
@@ -26,6 +27,7 @@ class Arguments {
   int getPCasos();
   int getPMuertes();
   int getCasosEdad();
+  Date getCasosCui();
 };
 
 Arguments::Arguments() {
@@ -44,6 +46,31 @@ bool Arguments::hasCSV(char *str) {
   if (suffix_l > str_l) exit(1);
 
   return strncmp(str + str_l - suffix_l, suffix, suffix_l) == 0;
+}
+
+bool Arguments::checkDate(char *str) {
+  size_t size = strlen(str);
+
+  if (size != 10) return false;
+
+  std::string a = string(str);
+  std::string years = a.substr(0, 4);
+  std::string month = a.substr(5, 2);
+  std::string day = a.substr(8, 2);
+
+  for (char c : years) {
+    if (!this->isNumber(c)) return false;
+  }
+
+  for (char c : month) {
+    if (!this->isNumber(c)) return false;
+  }
+
+  for (char c : day) {
+    if (!this->isNumber(c)) return false;
+  }
+
+  return true;
 }
 
 bool Arguments::checkNext(char *str) {
@@ -102,6 +129,14 @@ void Arguments::parse(int argc, char **argv) {
         this->casos_edad = atoi(next);
         continue;
       }
+
+      // covid.exe -casos_cui 2020-09-12
+      if (strcmp(argv[i], "-casos_cui") == 0 && this->checkDate(next)) {
+        if (this->checkDate(next))
+          this->casos_cui.fromISO(next);
+        else
+          this->casos_cui = Date(-1, -1, -1);
+      }
     }
   }
 }
@@ -115,5 +150,7 @@ int Arguments::getPCasos() { return this->p_casos; }
 int Arguments::getPMuertes() { return this->p_muertes; }
 
 int Arguments::getCasosEdad() { return this->casos_edad; }
+
+Date Arguments::getCasosCui() { return this->casos_cui; }
 
 #endif

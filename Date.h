@@ -16,6 +16,7 @@ class Date {
   Date();
   Date(int, int, int);
   void fromISO(string);
+  int getYear();
   bool operator>(Date);
   bool operator<(Date);
   bool operator==(Date);
@@ -45,6 +46,8 @@ void Date::fromISO(string date_s) {
   getline(ss, data, '-');
   this->day = stoi(data);
 }
+
+int Date::getYear() { return this->year; }
 
 bool Date::operator>(Date d) {
   if (this->year > d.year) return true;
@@ -81,8 +84,10 @@ bool Date::operator>=(Date d) {
 }
 
 void Date::toString() {
-  if (this->year != 0) printf("| %4d/%02d/%02d ", this->year, this->month, this->day);
-  else printf("| %10s ", "");
+  if (this->year != 0)
+    printf("| %4d/%02d/%02d ", this->year, this->month, this->day);
+  else
+    printf("| %10s ", "");
 }
 
 #endif

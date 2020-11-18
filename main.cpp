@@ -105,6 +105,9 @@ int main(int argc, char **argv) {
   if (arg.getCasosEdad() >= 0)
     filters::ageCases(cases, arg.getCasosEdad()).toString();
 
+  if (arg.getCasosCui().getYear() != -1)
+    filters::intensiveCases(cases, arg.getCasosCui()).toString();
+
   ifs.close();
 
   return 0;

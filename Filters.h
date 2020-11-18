@@ -60,14 +60,12 @@ void quickSortIntensive(CaseArray arr, int start, int end) {
   if (i < end) quickSortIntensive(arr, i, end);
 }
 
-CaseArray intensiveCases(CaseArray arr) {
+CaseArray intensiveCases(CaseArray arr, Date d) {
   Case c;
-  Date d(2020, 11, 12);
   CaseArray intensive_cases(arr.getSize());
   for (int i = 0; i < arr.getSize(); i++) {
     c = arr[i];
     if (c.is_intensive && c.intensive_date >= d) {
-      c.toString();
       intensive_cases.append(c);
     }
   }
