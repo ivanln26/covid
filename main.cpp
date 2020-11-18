@@ -12,15 +12,26 @@
 
 using namespace std;
 
+int countRows(char *filename) {
+  int count = 0;
+  ifstream ifs(filename);
+  string row;
+  while (getline(ifs, row)) count++;
+  ifs.close();
+  return count;
+}
+
 int main(int argc, char **argv) {
   Arguments arg;
   arg.parse(argc, argv);
+
+  int n_cases = countRows(arg.getFilename());
 
   ifstream ifs(arg.getFilename());
 
   // CSV Reader
 
-  CaseArray cases(4000000);
+  CaseArray cases(n_cases);
   int count = 0;  // counter used for interested fields
   string row, col;
   stringstream ss;
