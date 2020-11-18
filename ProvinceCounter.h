@@ -33,6 +33,7 @@ class ProvinceCounter {
   };
   int p_infected[N_PROVINCES];
   int p_deaths[N_PROVINCES];
+  void swap(int, int);
   void quickSort(int *arr, int, int);
 
  public:
@@ -51,25 +52,39 @@ ProvinceCounter::ProvinceCounter() {
   }
 }
 
-void ProvinceCounter::quickSort(int *arr, int start, int end) {
-  int middle = (start + end) / 2;
-  int pivot = arr[middle];
-  int i = start;
-  int j = end;
+void ProvinceCounter::swap(int i, int j) {
   int aux;
-  string aux_prov;
+  std::string province;
+
+  province = this->provinces[i];
+  this->provinces[i] = this->provinces[j];
+  this->provinces[j] = province;
+
+  aux = this->p_infected[i];
+  this->p_infected[i] = this->p_infected[j];
+  this->p_infected[j] = aux;
+
+  aux = this->p_deaths[i];
+  this->p_deaths[i] = this->p_deaths[j];
+  this->p_deaths[j] = aux;
+}
+
+void ProvinceCounter::quickSort(int *arr, int start, int end) {
+  int i, j, middle;
+  int aux, pivot;
+  std::string aux_prov;
+
+  middle = (start + end) / 2;
+  pivot = arr[middle];
+  i = start;
+  j = end;
 
   do {
     while (arr[i] > pivot) i++;
     while (arr[j] < pivot) j--;
 
     if (i <= j) {
-      aux = arr[i];
-      arr[i] = arr[j];
-      arr[j] = aux;
-      aux_prov = provinces[i];
-      provinces[i] = provinces[j];
-      provinces[j] = aux_prov;
+      this->swap(i, j);
       i++;
       j--;
     }
@@ -99,8 +114,8 @@ void ProvinceCounter::count(CaseArray arr) {
       }
     }
   }
-  this->quickSort(this->p_infected, 0, N_PROVINCES - 1);
-  // this->quickSort(this->p_deaths, 0, N_PROVINCES - 1);
+  // this->quickSort(this->p_infected, 0, N_PROVINCES - 1);
+  this->quickSort(this->p_deaths, 0, N_PROVINCES - 1);
 }
 
 void ProvinceCounter::printPInfected() {

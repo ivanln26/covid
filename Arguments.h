@@ -35,6 +35,7 @@ Arguments::Arguments() {
   this->p_casos = 0;
   this->p_muertes = 0;
   this->casos_edad = -1;
+  this->casos_cui = Date(-1, -1, -1);
 }
 
 bool Arguments::hasCSV(char *str) {
@@ -130,12 +131,12 @@ void Arguments::parse(int argc, char **argv) {
         continue;
       }
 
-      // covid.exe -casos_cui 2020-09-12
-      if (strcmp(argv[i], "-casos_cui") == 0 && this->checkDate(next)) {
+      if (strcmp(argv[i], "-casos_cui") == 0) {
         if (this->checkDate(next))
           this->casos_cui.fromISO(next);
         else
-          this->casos_cui = Date(-1, -1, -1);
+          printf("%s No es una fecha válida\n", next);
+        continue;
       }
     }
   }

@@ -40,7 +40,7 @@ void Case::toString() {
   // printf("| %10s ", this->intensive_date.c_str());
   printf("| %d ", this->is_dead);
   printf("| %12s ", this->summary.c_str());
-  printf("| %20s\n", this->province_name.c_str());
+  printf("| %-20s\n", this->province_name.c_str());
 }
 
 #endif
