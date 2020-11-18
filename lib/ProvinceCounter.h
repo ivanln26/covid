@@ -75,14 +75,9 @@ void ProvinceCounter::swap(int i, int j) {
 
 // quickSort sorts an integer counter array arr from highest to lowest
 void ProvinceCounter::quickSort(int *arr, int start, int end) {
-  int i, j, middle;
-  int aux, pivot;
-  std::string aux_prov;
-
-  middle = (start + end) / 2;
-  pivot = arr[middle];
-  i = start;
-  j = end;
+  int middle = (start + end) / 2;
+  int pivot = arr[middle];
+  int i = start, j = end;
 
   do {
     while (arr[i] > pivot) i++;
@@ -121,11 +116,11 @@ void ProvinceCounter::count(CaseArray arr) {
       }
     }
   }
-  // this->quickSort(this->p_infected, 0, N_PROVINCES - 1);
-  this->quickSort(this->p_deaths, 0, N_PROVINCES - 1);
 }
 
 void ProvinceCounter::printPInfected() {
+  this->quickSort(this->p_infected, 0, N_PROVINCES - 1);
+
   for (int i = 0; i < N_PROVINCES; i++) {
     printf("%s: %d\n", this->provinces[i].c_str(), this->p_infected[i]);
   }
@@ -133,12 +128,17 @@ void ProvinceCounter::printPInfected() {
 
 void ProvinceCounter::printPInfected(int n) {
   if (n > N_PROVINCES) n = N_PROVINCES;
+
+  this->quickSort(this->p_infected, 0, N_PROVINCES - 1);
+
   for (int i = 0; i < n; i++) {
     printf("%s: %d\n", this->provinces[i].c_str(), this->p_infected[i]);
   }
 }
 
 void ProvinceCounter::printPDeaths() {
+  this->quickSort(this->p_deaths, 0, N_PROVINCES - 1);
+
   for (int i = 0; i < N_PROVINCES; i++) {
     printf("%s: %d\n", this->provinces[i].c_str(), this->p_deaths[i]);
   }
@@ -146,6 +146,9 @@ void ProvinceCounter::printPDeaths() {
 
 void ProvinceCounter::printPDeaths(int n) {
   if (n > N_PROVINCES) n = N_PROVINCES;
+
+  this->quickSort(this->p_deaths, 0, N_PROVINCES - 1);
+
   for (int i = 0; i < n; i++) {
     printf("%s: %d\n", this->provinces[i].c_str(), this->p_deaths[i]);
   }

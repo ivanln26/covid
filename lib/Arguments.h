@@ -15,6 +15,7 @@ class Arguments {
   int p_muertes;
   int casos_edad;
   Date casos_cui;
+  bool to_count;
   bool hasCSV(char *);
   bool checkDate(char *);
   bool checkNext(char *);
@@ -29,6 +30,7 @@ class Arguments {
   int getPMuertes();
   int getCasosEdad();
   Date getCasosCui();
+  bool toCount();
 };
 
 // Arguments contructor used to set flag defaults
@@ -38,6 +40,7 @@ Arguments::Arguments() {
   this->p_muertes = 0;
   this->casos_edad = -1;
   this->casos_cui = Date(-1, -1, -1);
+  this->to_count = false;
 }
 
 // hasCSV reports whether a string has the .csv extension
@@ -119,6 +122,7 @@ void Arguments::parse(int argc, char **argv) {
       next = argv[i + 1];
 
       if (strcmp(argv[i], "-p_casos") == 0) {
+        this->to_count = true;
         if (this->checkNext(next))
           this->p_casos = atoi(next);
         else
@@ -127,6 +131,7 @@ void Arguments::parse(int argc, char **argv) {
       }
 
       if (strcmp(argv[i], "-p_muertes") == 0) {
+        this->to_count = true;
         if (this->checkNext(next))
           this->p_muertes = atoi(next);
         else
@@ -161,5 +166,7 @@ int Arguments::getPMuertes() { return this->p_muertes; }
 int Arguments::getCasosEdad() { return this->casos_edad; }
 
 Date Arguments::getCasosCui() { return this->casos_cui; }
+
+bool Arguments::toCount() { return this->to_count; }
 
 #endif

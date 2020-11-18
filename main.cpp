@@ -99,29 +99,38 @@ int main(int argc, char **argv) {
   // Statistics displayer
 
   if (arg.getEstad()) {
+    printf("\nEstadísticas\n");
     Statistics s;
     s.calculate(cases);
     s.toString();
   }
 
-  ProvinceCounter pc;
-  pc.count(cases);
+  if (arg.toCount()) {
+    ProvinceCounter pc;
+    pc.count(cases);
 
-  if (arg.getPCasos() == -1)
-    pc.printPInfected();
-  else
-    pc.printPInfected(arg.getPCasos());
+    printf("\nCasos infectados por provincia\n");
+    if (arg.getPCasos() == -1)
+      pc.printPInfected();
+    else
+      pc.printPInfected(arg.getPCasos());
 
-  if (arg.getPMuertes() == -1)
-    pc.printPDeaths();
-  else
-    pc.printPDeaths(arg.getPMuertes());
+    printf("\nCasos fallecidos por provincia\n");
+    if (arg.getPMuertes() == -1)
+      pc.printPDeaths();
+    else
+      pc.printPDeaths(arg.getPMuertes());
+  }
 
-  if (arg.getCasosEdad() >= 0)
+  if (arg.getCasosEdad() >= 0) {
+    printf("\nCasos por edad\n");
     filters::ageCases(cases, arg.getCasosEdad()).toString();
+  }
 
-  if (arg.getCasosCui().getYear() != -1)
+  if (arg.getCasosCui().getYear() != -1) {
+    printf("\nCasos intensivos\n");
     filters::intensiveCases(cases, arg.getCasosCui()).toString();
+  }
 
   ifs.close();
 

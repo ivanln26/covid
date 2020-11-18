@@ -37,7 +37,8 @@ CaseArray ageCases(CaseArray arr, int age) {
       age_cases.append(c);
     }
   }
-  quickSortAge(age_cases, 0, age_cases.getSize() - 1);
+  if (age_cases.getSize() > 0)
+    quickSortAge(age_cases, 0, age_cases.getSize() - 1);
   return age_cases;
 }
 
@@ -70,11 +71,12 @@ CaseArray intensiveCases(CaseArray arr, Date d) {
   CaseArray intensive_cases(arr.getSize());
   for (int i = 0; i < arr.getSize(); i++) {
     c = arr[i];
-    if (c.is_intensive && c.intensive_date >= d) {
+    if (c.is_intensive && c.intensive_date > d) {
       intensive_cases.append(c);
     }
   }
-  quickSortIntensive(intensive_cases, 0, intensive_cases.getSize() - 1);
+  if (intensive_cases.getSize() > 0)
+    quickSortIntensive(intensive_cases, 0, intensive_cases.getSize() - 1);
   return intensive_cases;
 }
 }  // namespace filters
